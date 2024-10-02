@@ -22,15 +22,15 @@ jobs:
 
       - name: Build and Push Vote Docker Image
         run: |
-          docker build -t $USERNAME/vote ./vote
+          docker buildx build --load -t $USERNAME/vote ./vote
           docker push $USERNAME/vote
 
       - name: Build and Push Result Docker Image
         run: |
-          docker build -t $USERNAME/result ./result
+          docker buildx build --load -t $USERNAME/result ./result
           docker push $USERNAME/result
 
       - name: Build and Push Worker Docker Image
         run: |
-          docker build -t $USERNAME/worker ./worker
+          docker buildx build --load -t $USERNAME/worker ./worker
           docker push $USERNAME/worker
