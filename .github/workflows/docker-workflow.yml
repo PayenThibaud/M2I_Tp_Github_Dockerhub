@@ -20,6 +20,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set up DOCKERHUB_USERNAME for docker-compose
+        run: echo "DOCKERHUB_USERNAME=${{ env.USERNAME }}" > .env
+
       - name: Build and Push Vote Docker Image
         run: |
           docker build -t $USERNAME/vote ./vote

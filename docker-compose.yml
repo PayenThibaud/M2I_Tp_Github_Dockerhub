@@ -1,27 +1,61 @@
+# version: '3'
+# services:
+#   vote:
+#     build:
+#       context: ./vote
+#       dockerfile: Dockerfile
+#     ports:
+#       - "80:80"
+#     depends_on:
+#       - redis
+
+#   result:
+#     build:
+#       context: ./result
+#       dockerfile: Dockerfile
+#     ports:
+#       - "3000:3000"
+#     depends_on:
+#       - postgres
+
+#   worker:
+#     build:
+#       context: ./worker
+#       dockerfile: Dockerfile
+
+#   redis:
+#     image: redis:5.0-alpine3.10
+#     ports:
+#       - "6379:6379"
+
+#   postgres:
+#     image: postgres:9.4
+#     environment:
+#       POSTGRES_DB: mydatabase
+#       POSTGRES_USER: myuser
+#       POSTGRES_PASSWORD: mypassword
+#     ports:
+#       - "5432:5432"
+
+# Directement depuis docker hub
 version: '3'
 services:
   vote:
-    build:
-      context: ./vote
-      dockerfile: Dockerfile
+    image: ${DOCKERHUB_USERNAME}/vote
     ports:
       - "80:80"
     depends_on:
       - redis
 
   result:
-    build:
-      context: ./result
-      dockerfile: Dockerfile
+    image: ${DOCKERHUB_USERNAME}/result
     ports:
       - "3000:3000"
     depends_on:
       - postgres
 
   worker:
-    build:
-      context: ./worker
-      dockerfile: Dockerfile
+    image: ${DOCKERHUB_USERNAME}/worker
 
   redis:
     image: redis:5.0-alpine3.10
