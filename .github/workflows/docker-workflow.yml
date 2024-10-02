@@ -20,13 +20,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install Docker Compose
+      - name: Build vote Docker image
         run: |
-          sudo apt-get update
-          sudo apt-get install -y docker-compose
+          cd vote
+          docker build -t $USERNAME/vote .
 
-      - name: Build Docker images
-        run: docker-compose -f docker-compose.yml build
+      - name: Build result Docker image
+        run: |
+          cd result
+          docker build -t $USERNAME/result .
 
-      - name: Push Docker images to Docker Hub
-        run: docker-compose -f docker-compose.yml push
+      - name: Build worker Docker image
+        run: |
+          cd worker
+          docker build -t $USERNAME/worker .
+
+      - name: Push vote Docker image
+        run: docker push $USERNAME/vote
+
+      - name: Push result Docker image
+        run: docker push $USERNAME/result
+
+      - name: Push worker Docker image
+        run: docker push $USERNAME/worker
+
