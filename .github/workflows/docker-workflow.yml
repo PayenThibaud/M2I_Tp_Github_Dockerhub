@@ -22,17 +22,11 @@ jobs:
 
       - name: Build and Push Docker Images
         run: |
-          cd vote
-          docker build -t $USERNAME/vote .
+          docker build -t $USERNAME/vote ./vote
           docker push $USERNAME/vote
-          cd ..
 
-          cd result
-          docker build -t $USERNAME/result .
+          docker build -t $USERNAME/result ./result
           docker push $USERNAME/result
-          cd ..
 
-          cd worker
-          docker build -t $USERNAME/worker .
+          docker build -t $USERNAME/worker ./worker
           docker push $USERNAME/worker
-
