@@ -37,4 +37,3 @@ jobs:
 
       - name: Show Username
         run: echo "Docker Hub Username: $USERNAME"
-
