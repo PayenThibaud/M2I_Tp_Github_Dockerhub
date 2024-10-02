@@ -34,6 +34,3 @@ jobs:
         run: |
           docker build -t $USERNAME/worker ./worker
           docker push $USERNAME/worker
-
-      - name: Show Username
-        run: echo "Docker Hub Username: $USERNAME"
